@@ -39,22 +39,20 @@ def read_all():
 def login(user):
     user_email = user.get("user_email")
     user_password = user.get("user_password")
-
-    if user_email in USER and user_password in USER:
-        for user in USER:
-            if user_email in USER:
-                user[user_status] = 1
-                return user[user_id], 201
-    else:
-        abort(
-            406,
-            "Not exists",
-        )
+    for user in USER:
+        if user_email == USER[user]["user_email"] and user_password in USER[user]["user_password"]:            
+                USER[user]["user_status"] = 1
+                return USER[user]["user_id"], 200
+    
+    abort(
+        406,
+        "Not exists",
+    )
 
 def logout(user_id):
     for user in USER:
-        if user_id in user:
-            user[user_status] = 0
+        if user_id == USER[user]["user_id"]:
+            user[user_id]["user_id"] = 0
             return user[user_id], 200
         
 def create(user):

@@ -11,8 +11,6 @@ components:
   schemas:
     User:
       type: "object"
-      required:
-        - user_id
       properties:
         user_name:
           type: "string"
